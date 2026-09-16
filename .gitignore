@@ -1,0 +1,91 @@
+# Based on the official Unity .gitignore (github/gitignore, Unity.gitignore)
+# NOTE: patterns are NOT anchored to repo root because the Unity project
+# lives in the Nihil/ subfolder (repo root contains docs + .gitignore).
+
+# Unity-generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]serSettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+[Ee]xportedObj/
+
+# Crash reports / bug reports
+sysinfo.txt
+*.stackdump
+
+# Visual Studio / MonoDevelop
+.vs/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.csproj.user
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+*.rider
+
+# Visual Studio Code
+.vscode/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Gradle (Android builds)
+gradle-app.setting
+temp/classpath.txt
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
+android/gradlew
+android/gradlew.bat
+android/fastlane/
+
+# Android
+[Ll]ocal[Pp]roperties.properties
+*.apk
+*.soj
+*.jar
+*.aar
+*.class
+*.dylib
+
+# iOS / OS X
+*.dSYM.zip
+*.dSYM
+*.ipa
+*.exe
+*.unitypackage
+
+# Unity License
+*.ulf
+*.alf
+
+# Node (used by some editor tooling)
+node_modules/
+
+# Git metadata noise
+.ftpconfig
+.sshconfig
