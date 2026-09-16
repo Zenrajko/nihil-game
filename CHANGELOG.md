@@ -6,6 +6,46 @@ Living journal for the *Nihil* project. Newest entries at the top.
 
 ---
 
+## 2026-09-16 — M3 progress: hitscan blaster
+
+### [Added] Assets (Kenney, CC0)
+- **Blaster Kit** → `Assets/Kenney/BlasterKit/` — 18 blasters, targets, props. Only `blaster-a.fbx` (+ textures) imported into the project; full pack kept in local `asset-vault/` (gitignored).
+- **Sci-fi Sounds** → `Assets/Kenney/kenney_sci-fi-sounds/` — 70 CC0 clips; only `laserSmall_000.ogg` kept in project for the shot sound.
+- Both logged in `CREDITS.md`.
+
+### [Added] Gameplay
+- Blaster model mounted on the FPS camera; `Blaster.cs` hitscan: fires on LMB (`Input System`, no kit edits), muzzle-flash particle + one-shot laser SFX in `Fire()`.
+- Hit reporting via `Debug.Log` (fills M3 "damages a target" once a small HP handler exists; ray already resolves targets by name).
+
+### [Changed] Asset workflow
+- Unreferenced models/audio moved out of the Unity project into `asset-vault/` at repo root; `.gitignore` now excludes `asset-vault/`. Rule: commit only what the game references.
+- [Lesson] Moving paths with `Move-Item` in PowerShell is error-prone; GLB/OBJ duplicate formats + preview art were dropped in the move (re-downloadable, CC0). Verify vault contents after bulk moves.
+
+### Next
+- M3 wrap: target with a tiny HP handler to close "damages a target", or proceed directly to M4 enemies (they'll need the same handler).
+
+---
+
+## 2026-09-16 — M1 & M2: whitebox arena + FPS movement
+
+### [Milestone] M1 — Complete
+- `Arena.unity` created from the Starter Assets Playground scene copy (kept player rig, removed demo environment).
+- 20×16 m room built from `Wall_Prefab` instances + floor; geometric positions used, overlaps intentional. Materials skipped for now.
+- Settings: grid snap enabled (Scene view magnet, Move Increment = 1).
+- First lesson learned: **`.unity` files** are the scene assets; a same-named folder (baked lighting) is not.
+
+### [Milestone] M2 — Complete (effectively)
+- The Starter Assets First Person controller covers the whole milestone: walk, sprint, crouch, jump, mouse look — all playtested inside the arena during M1.
+- No extra work needed; M2 folded into M1's playtest.
+
+### [Lesson] URP material migration
+- On touching materials, URP 17.6 auto-migrated three Starter Assets `.mat` files (added `_ScreenSpaceReflections`, float drift). Reverting is futile churn — committed once as part of M1.
+
+### Next steps
+- **M3 — Weapon firing**: hitscan fire, muzzle flash, sound, damages a target.
+
+---
+
 ## 2026-09-16 — Commercial release kept possible
 
 ### [Decision] Sellability

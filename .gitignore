@@ -87,6 +87,9 @@ android/fastlane/
 # Node (used by some editor tooling)
 node_modules/
 
+# Local asset vault (unused free assets kept out of the repo)
+asset-vault/
+
 # Git metadata noise
 .ftpconfig
 .sshconfig

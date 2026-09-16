@@ -14,7 +14,7 @@ Nihil is a homage to the boomer-shooter genre — entirely original art, levels,
 
 ## Features (in progress)
 
-- **Fast "boomer shooter" movement** — sprint, jump, crouch (Starter Assets FPS controller)
+- **Fast "boomer shooter" movement** — sprint, jump, crouch — **done** (M1/M2)
 - **Hitscan weapon** — instant-hit gun with muzzle flash, impact, and sound (M3)
 - **Arena fights** against simple chasing enemies (M4)
 - **Health, damage, death & restart** game state (M5)
@@ -58,8 +58,8 @@ Original code & docs: **MIT** (see [`LICENSE`](LICENSE)). Third-party assets rem
 | # | Milestone |
 |---|---|
 | M0 | Project scaffolding — **done** |
-| M1 | Whitebox arena |
-| M2 | Movement + look |
+| M1 | Whitebox arena — **done** |
+| M2 | Movement + look — **done** |
 | M3 | Weapon firing |
 | M4 | Enemies |
 | M5 | Health + game state |
