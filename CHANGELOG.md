@@ -6,6 +6,41 @@ Living journal for the *Nihil* project. Newest entries at the top.
 
 ---
 
+## 2026-09-16 — Gun sway + unused-asset review
+
+### [Added] Gun sway (M3 feel polish)
+- `GunSway.cs` in `Assets/Kenney/BlasterKit/` — procedural walk bob (velocity-driven, grounded-only) + mouse-delta look sway. Cosmetic only; `Blaster.cs` ray stays camera-centric, so sway never shifts aim.
+- [Fixed] v1 look-sway sampled camera Euler per-frame in `LateUpdate`, racing the controller/Cinemachine camera writes → one-frame twitch on turns. Rewrote to read `Mouse.current.delta` + `maxSway` clamp: ordering-proof and immune to screen-edge spikes. The two sway arms (camera-sampled vs mouse-sampled) were both diagnosed carefully before switching.
+
+### [Lesson] Script wiring gotchas (both hit this session)
+- Component was placed on a **new empty child** (`GunSway` GameObject) floating 1 m below the gun — swaying an invisible object. Must attach to the same object as `Blaster`.
+- `GetComponentInParent<CharacterController>()` returns null when the camera is NOT parented under the player capsule → silent `enabled = false`. Use `FindAnyObjectByType<CharacterController>()` for the prototype.
+
+### [Review] Unused-asset sweep (~93 MB unreferenced in `Nihil/Assets`)
+Ran a GUID reachability closure from `Arena.scene`. Findings + plan:
+- **Delete** `Starter Assets/Runtime/ThirdPersonController/` (~86 MB — model, animations, textures, sfx, prefabs).
+- **Delete** `Starter Assets/Editor/ThirdPersonStarterAssetsDeployMenu.cs` — it compiles against the `ThirdPersonController` type; leave it in and the Editor assembly breaks.
+- **Delete** `Starter Assets/Runtime/SpaceRobotKyle/` (~6.5 MB demo robot) and `Starter Assets/Runtime/Mobile/` (~0.2 MB; Windows-only target).
+- Optional small: `Starter Assets/Runtime/Settings/` quality-pipeline assets, root `TutorialInfo/`, root `Readme.asset`.
+- **Keep**: `Sample/Environment` wall+skybox chain, `Sample/FirstPersonController/Playground` lighting (**Arena is still bound to its baked lighting data** — re-bake Arena later), root `InputSystem_Actions.inputactions` (project-settings default), `Assets/Settings/*` (pipeline), `StarterAssetsDeployMenu.cs` + URP wizard (Editor tools).
+- [Fixed] `EditorBuildSettings.asset` still lists `Assets/Scenes/SampleScene.unity` (the deleted URP template scene) — a build would break. Set Build Settings to `Assets/Scenes/Arena.unity`.
+- Verified: `asset-vault/` present (7.3 MB, 229 files, gitignored); Kenney committed content is only what the game references (blaster-a, one laser clip).
+
+### [Changed] Tooling
+- External script editor switched Notepad → Visual Studio (Edit → Preferences → External Tools).
+
+### [Lesson] Closure scan bug → Mobile blunder (review pass 2)
+- My scene-GUID reachability closure silently under-reported refs (it also missed `StarterAssets.inputactions`, which IS wired to the player). Result: `Runtime/Mobile/` was wrongly flagged unused.
+- **Truth:** the Arena scene instantiates two Mobile-bundle root prefabs — `UI_TouchScreenInput` + `UI_EventSystem` (auto-disabled on desktop via `MobileDisableAutoSwitchControls`). Deleting Mobile broke those references.
+- **Fix applied in Editor:** delete both broken root GameObjects in the Arena hierarchy (they were inert on desktop) → scene clean again.
+- **Remaining scene quirks:** arena carries a stale custom-reflection cubemap ref (`619e305f…`) from the copied Playground lighting — cosmetic; resolves on a proper Arena re-bake. `474bcb49` / `e823cd5b` are URP package assets (`UniversalAdditionalLightData`, `ParticlesUnlit` default mat) — benign.
+- [Lesson] Re-verify reachability scans against git history when trusting a clean verdict; scene copies inherit stale refs the closure can mislabel.
+
+### Next steps
+- Remove `SampleScene.unity` from Build Settings (keep only `Assets/Scenes/Arena.unity`), playtest the arena, then commit the cleanup.
+
+---
+
 ## 2026-09-16 — M3 progress: hitscan blaster
 
 ### [Added] Assets (Kenney, CC0)

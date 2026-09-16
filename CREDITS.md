@@ -15,7 +15,7 @@ Asset attributions for **Nihil**. Every imported asset records its author, licen
 - Author: Kenney — https://kenney.nl/assets/sci-fi-sounds
 - License: **CC0 1.0 Universal** — free for any use incl. commercial, no attribution required
 - Redistribution: unrestricted (public domain dedication)
-- Notes: 70 normalized OGG files — lasers, explosions, engines. Imported into `Assets/Kenney/kenney_sci-fi-sounds/` for M3 shot SFX. Subset used; unused clips may be pruned before commit.
+- Notes: 70 normalized OGG files — lasers, explosions, engines. Imported into `Assets/Kenney/kenney_sci-fi-sounds/` for M3 shot SFX. Pruned to the single used clip (`laserSmall_000.ogg`); the rest stay in the gitignored `asset-vault/`.
 
 ### 2026-09-16 — Blaster Kit (Kenney)
 - Author: Kenney — https://kenney.nl/assets/blaster-kit
@@ -27,4 +27,4 @@ Asset attributions for **Nihil**. Every imported asset records its author, licen
 - Author: Unity Technologies — [Asset Store listing 196526](https://assetstore.unity.com/packages/3d/characters/first-person-third-person-character-controllers-196526)
 - License: **Unity Companion License** (commercial use permitted within Unity-authored content; distribution of the game fine; no Unity trademarks in branding)
 - Redistribution: permitted as part of a Unity-authored project via Companion License
-- Notes: Imported full package. Deprecation warnings present on import (`FindObjectsByType(FindObjectsSortMode)` in `Editor/ThirdPersonStarterAssetsDeployMenu.cs`) — left as-is to keep parity with the store asset; the code is functional and Third Person controller is unused.
+- Notes: Imported full package. Used subset only — First Person controller, Input System, Sample env walls/skybox. Unused content pruned from the repo per license-permitting strip: Third Person controller (scripts/character/animations/sfx), SpaceRobotKyle robot, Mobile UI touchscreen bundle, and the quality-level pipeline assets. The original `ThirdPersonStarterAssetsDeployMenu.cs` editor script was removed with it (it compiled against the deleted `ThirdPersonController`).
