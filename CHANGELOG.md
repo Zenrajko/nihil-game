@@ -6,6 +6,25 @@ Living journal for the *Nihil* project. Newest entries at the top.
 
 ---
 
+## 2026-09-16 — Public portfolio repo + M0 complete
+
+### [Decision] Repository visibility
+- Host the project on GitHub as a **public** repo named `nihil-game` (portfolio purposes). Create with no README/license to avoid clashes — both already exist locally.
+- Asset redistribution policy: every imported asset records its license + redistribution terms in `CREDITS.md`. If any asset's license restricts redistribution, it is **not** to be committed — exclude via `.gitignore` and note the exclusion. Adopted because the repo's public contents effectively redistribute all included assets.
+- Currently-imported Starter Assets (Unity free starter package) permit redistribution - repo is clean today.
+
+### [Milestone] M0 — Complete
+- Unity 6.6 `6000.6.0f1` URP project `Nihil/` created via Unity Hub (`Universal 3D` template), opens and plays the sample scene.
+- Committed: `.gitattributes` (`* text=auto`), `.gitignore` (subfolder-aware), docs, and the full Unity project (Assets/Packages/ProjectSettings + `.meta` files).
+- `core.autocrlf=false` set locally to silence CRLF noise.
+
+### Next steps
+1. Create the public GitHub repo, then `git remote add origin ...` + `git push -u origin master`.
+2. Create `CREDITS.md` placeholder.
+3. First playtest milestone: whitebox arena (M1).
+
+---
+
 ## 2026-09-16 — Unity version pinned to 6.6
 
 ### [Changed] Engine choice
@@ -17,6 +36,7 @@ Living journal for the *Nihil* project. Newest entries at the top.
 
 ### [Decision] Scope
 - Build a **Doom-like FPS prototype** (boomer shooter: fast movement, hitscan/plasma combat, arena fights) — a playable slice, not a full game.
+- "Doom-like" means genre homage only (fast movement, arcade combat, arena structure). **No Doom content will be copied** - all art, levels, names, and audio are original or free-licensed assets; nothing derived from id/Bethesda IP.
 - Learn Unity by doing; produce the game **in the Editor**, not from code.
 - **Free assets only** (CC0 preferred). Reuse assets over writing code wherever possible.
 
