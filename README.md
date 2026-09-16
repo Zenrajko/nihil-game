@@ -8,7 +8,9 @@ Nihil is a homage to the boomer-shooter genre — entirely original art, levels,
 
 ## Screenshots
 
-*Coming soon — gameplay GIF and screenshots land with the first playtest.*
+![Nihil whitebox arena](screenshots/Screenshot%202026-09-16%20141127.png)
+
+*First playtest in the whitebox arena — hitscan blaster with muzzle flash and laser SFX (M3).*
 
 ---
 
@@ -28,7 +30,7 @@ Nihil is a homage to the boomer-shooter genre — entirely original art, levels,
 
 1. Install **Unity 6.6 LTS-line** (`6000.6.0f1`, Supported) via Unity Hub
 2. Open this repo's `Nihil/` folder as a project (Hub → **Open → Add project from disk** → select `Nihil/`)
-3. Open the `SampleScene` and press **Play**
+3. Open the `Arena` scene and press **Play**
 
 Builds for Windows desktop target (M1+).
 
