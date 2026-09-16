@@ -6,6 +6,30 @@ Living journal for the *Nihil* project. Newest entries at the top.
 
 ---
 
+## 2026-09-16 — Commercial release kept possible
+
+### [Decision] Sellability
+- Keep the **option to sell** the finished game (e.g. on itch.io) open as a goal. It is not a current action item — just making sure nothing precludes it later.
+- **License check (clear for commercial sale):**
+  - Starter Assets – First Person Controller (Unity Companion License): royalty-free right to reproduce, modify, and distribute within Unity-authored content; the game itself is not a derivative of the assets. Commercial distribution is fine.
+  - Unity 6 + Unity Personal: free below **$200K USD / last 12 months**; no per-install runtime fee on Unity 6. If that cap is ever crossed → upgrade to Pro (no retroactive penalty).
+  - Planned CC0 pipeline (Kenney, Quaternius, Poly Haven, ambientCG) is commercial-safe, including resale. Freesound requires CC0-filtering.
+- Consequence for asset policy: **keep `CREDITS.md` accurate** — a re-distribution-restricting free asset is the one thing that could block a sale.
+
+---
+
+## 2026-09-16 — Repo live on GitHub
+
+### [Milestone] M0 — Repository pushed
+- Created public repo `nihil-game` via `gh repo create` and pushed `master` (all Git/GitHub ops done from the CLI).
+- Live at `https://github.com/Zenrajko/nihil-game`.
+- Added `LICENSE` (MIT, © 2026 Zenrajko), license-scope note in `CREDITS.md`, License section in `README.md`, and `*.slnx` to `.gitignore`.
+
+### Next steps
+- **M1 — Whitebox arena**: grey-box room (floor + walls), player spawn, working collision. This is the first real playtest milestone.
+
+---
+
 ## 2026-09-16 — Public portfolio repo + M0 complete
 
 ### [Decision] Repository visibility

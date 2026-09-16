@@ -11,4 +11,8 @@ Asset attributions for **Nihil**. Every imported asset records its author, licen
 
 ## Assets
 
-_No third-party assets imported yet._ The Unity starter Assets – First Person Controller is part of the Unity `Universal 3D` starter project (Unity free starter assets, redistribution permitted within user projects).
+### 2026-09-16 — Starter Assets – First Person + Third Person | Character Controllers (v2.0, Sep 2026)
+- Author: Unity Technologies — [Asset Store listing 196526](https://assetstore.unity.com/packages/3d/characters/first-person-third-person-character-controllers-196526)
+- License: **Unity Companion License** (commercial use permitted within Unity-authored content; distribution of the game fine; no Unity trademarks in branding)
+- Redistribution: permitted as part of a Unity-authored project via Companion License
+- Notes: Imported full package. Deprecation warnings present on import (`FindObjectsByType(FindObjectsSortMode)` in `Editor/ThirdPersonStarterAssetsDeployMenu.cs`) — left as-is to keep parity with the store asset; the code is functional and Third Person controller is unused.
