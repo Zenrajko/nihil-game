@@ -6,6 +6,33 @@ Living journal for the *Nihil* project. Newest entries at the top.
 
 ---
 
+## 2026-09-18 — TerrainSlide: steep-slope slide + jump-lock (wall-riding fixed)
+
+### [Added] `TerrainSlide.cs` — sliding down the cliffs
+- New hand-written script under `Assets/Scripts/`. Three probe rays (straight down + ±15° fans) test the slope angle; faces steeper than `SteepAngle` (55°) mark the player `IsSteep`.
+- The slide carries **momentum**: velocity lerps up to full downhill speed, then bleeds off via friction after leaving the face — so crest exits decelerate naturally instead of snapping to a stop.
+- Attached to the player capsule; wired via `GetComponent` (same GameObject as the `CharacterController`), so there's no Inspector drag to forget.
+
+### [Changed] `FirstPersonController` patched (Starter Assets pack file)
+- Jump gated with `&& !_slide.IsSteep` in `JumpAndGravity()` — no hop into a cliff.
+- Walk input zeroed while steep so input doesn't fight the slide's downhill push.
+- Small, deliberate deviation from the pristine pack asset: two added conditions + one cached reference.
+
+### [Fixed] Wall-riding cheese
+- Sprinting into a cliff edge + mashing jump no longer gains height — the trick that previously carried the player to the crest is dead. Walkable slopes under 55° behave as normal terrain.
+
+### [Lesson] Assembly definitions: hand-written code vs asset packs
+- `TerrainSlide.cs` in `Assets/Scripts/` compiled into the default **Assembly-CSharp**, which the asset pack's own `Unity.StarterAssets.asmdef` cannot see → `CS0246: TerrainSlide could not be found`.
+- Fix: `Nihil.Scripts.asmdef` for `Assets/Scripts/` + a reference added into `Unity.StarterAssets.asmdef`. Also hit: a fresh asmdef stays internally named `NewAssembly` until you set the Name field — reference-by-name matches the **internal** name, not the filename.
+
+### [Lesson] Burst "not a known Burst entry point" console spam
+- Flood of messages naming `Unity.RenderPipelines.GPUDriven.Runtime` internal jobs (`CullingJob`, `PrefixSumDrawsAndInstances`, …) — a Unity 6.x Burst-initialization quirk, unrelated to game code. Resolved session-side (version sync / cache refresh); harmless to gameplay and builds otherwise.
+
+### [Added] Playtest screenshot
+- `screenshots/Screenshot 2026-09-18 125617.png` added to the README above the M3 whitebox shot.
+
+---
+
 ## 2026-09-18 — Terrain + alien-sun pivot, back on the Doom-like
 
 ### [Decision] TRON theme shelved

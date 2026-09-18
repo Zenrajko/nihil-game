@@ -8,6 +8,10 @@ Nihil is a homage to the boomer-shooter genre — entirely original art, levels,
 
 ## Screenshots
 
+![Nihil alien-planet arena](screenshots/Screenshot%202026-09-18%20125617.png)
+
+*Open alien-planet arena — sculpted terrain, dirt + rock layers, giant-sun skybox. TerrainSlide stops wall-riding on the cliffs.*
+
 ![Nihil whitebox arena](screenshots/Screenshot%202026-09-16%20141127.png)
 
 *First playtest in the whitebox arena — hitscan blaster with muzzle flash and laser SFX (M3).*
