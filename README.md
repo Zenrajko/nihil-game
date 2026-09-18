@@ -22,7 +22,7 @@ Nihil is a homage to the boomer-shooter genre — entirely original art, levels,
 - **Health, damage, death & restart** game state (M5)
 - **Retro-juice** — screenshake, particles, pickups, HUD (M6)
 
-> Status: pre-alpha prototype, milestone M0 complete — see [Roadmap](#roadmap).
+> Status: pre-alpha prototype — M0–M2 complete, M3 in progress, set on an open alien-planet arena — see [Roadmap](#roadmap).
 
 ---
 

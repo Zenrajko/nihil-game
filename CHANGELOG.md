@@ -6,6 +6,35 @@ Living journal for the *Nihil* project. Newest entries at the top.
 
 ---
 
+## 2026-09-18 — Terrain + alien-sun pivot, back on the Doom-like
+
+### [Decision] TRON theme shelved
+- Auditioned a neon TRON look (black void sky, glowing grid lines, bloom-heavy post) as a diversion. Fun to prototype, but it fights the Doom-like direction — shelved. Sky and lighting now point back at the hostile-alien-planet brief.
+- Lesson reminder: a theming experiment is cheap to try when it's all material/volume tweaks; nothing below needed tearing out.
+
+### [Changed] Level opens up
+- Walls + floor instances replaced with a single **Terrain** object + a few hills — replaces the walled 20×16 arena with an open battlefield. Cover is now terrain-driven (hills), so spawn/cover layout gets reconsidered before M4.
+- Uncommitted gun-feel tuning from the last session carries forward: `bobHeight` 0.009→0.02, `swayAmount` 0.05→0.1.
+
+### [Changed] Skybox → large alien sun
+- `Assets/Settings/Sky.mat` (created last session, now Skybox/Procedural) tuned from "black void" to a big glaring sun for the alien-planet look.
+- [Lesson] Unity 6.6's Procedural skybox shader **no longer has `Ground Exponent`** — the 6000.6 manual lists exactly: Sun · Sun Size · Sun Size Convergence · Atmosphere Thickness · Sky Tint · Ground · Exposure. Earlier that field existed in the legacy shader; don't look for it.
+- Sun disk direction follows the scene's directional light — aim the light, not a skybox knob, to place the sun.
+
+### [Added] Terrain wilderness — the planet
+- Walled 20×16 arena retired; one **Terrain** + sculpted hills replaced it as the battlefield. Terrain data + terrain layers live under `Assets/Terrain/` (textures in `Assets/Terrain/Textures/`, layers in `Assets/Terrain/Layers/`).
+- Painted with two ambientCG terrain layers — dirt across the floor, rock on the hill crests — see `CREDITS.md`.
+- Terrain material `Dirt.mat` (**URP → Terrain → Lit**) assigned via Terrain Settings.
+- [Lesson] Unity 6 terrain tools live in the **Scene-view overlay**, not the Inspector — and "Paint Texture" hides under a **Materials Mode** category (Stamp Terrain is a separate *sculpt* tool).
+- [Lesson] Unity 6's Procedural skybox shader **dropped `Ground Exponent`** — 6000.6 manual lists exactly Sun · Sun Size · Sun Size Convergence · Atmosphere Thickness · Sky Tint · Ground · Exposure. Horizon-glow moods now ride on Atmosphere Thickness + Sky Tint.
+- [Known] Steep faces are cheesable: `CharacterController` treats near-vertical slopes as walls, and even a *single* jump pressed against one carries the player up to the crest (wall-riding). `slopeLimit` can't stop it (governs walking only) — the planned `TerrainSlide.cs` (multi-ray steep check + downhill slide + jump-lock) is specced but not yet written.
+
+### [Changed] Game feel
+- Gun sway/bob tuned: `bobHeight` 0.009→**0.02**, `swayAmount` 0.05→**0.1**.
+- Jump feel tuning pass: Jump Height reduced, Gravity raised (less floaty). Dropping Slope Limit to ~30 confirmed it blocks *walking* up steep faces but does nothing for jump arcs (see TerrainSlide note above).
+
+---
+
 ## 2026-09-16 — Gun sway + unused-asset review
 
 ### [Added] Gun sway (M3 feel polish)
