@@ -8,6 +8,10 @@ Nihil is a homage to the boomer-shooter genre — entirely original art, levels,
 
 ## Screenshots
 
+![Nihil alien-planet arena with fog](screenshots/Screenshot%202026-09-19%20124657.png)
+
+*Expanded alien-planet terrain with distance fog — built-in URP scene fog rolls in across the sculpted hills, leaving the sky clear.*
+
 ![Nihil alien-planet arena](screenshots/Screenshot%202026-09-18%20125617.png)
 
 *Open alien-planet arena — sculpted terrain, dirt + rock layers, giant-sun skybox. TerrainSlide stops wall-riding on the cliffs.*
@@ -22,6 +26,7 @@ Nihil is a homage to the boomer-shooter genre — entirely original art, levels,
 
 - **Fast "boomer shooter" movement** — sprint, jump, crouch — **done** (M1/M2)
 - **Hitscan weapon** — instant-hit gun with muzzle flash, impact, and sound (M3)
+- **Distance fog** — built-in URP scene fog, thins out the horizon (no post-processing)
 - **Arena fights** against simple chasing enemies (M4)
 - **Health, damage, death & restart** game state (M5)
 - **Retro-juice** — screenshake, particles, pickups, HUD (M6)

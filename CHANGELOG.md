@@ -6,6 +6,29 @@ Living journal for the *Nihil* project. Newest entries at the top.
 
 ---
 
+## 2026-09-19 — Terrain expansion + distance fog via built-in scene fog
+
+### [Changed] Terrain opens up further
+- `Terrain_Arena.asset` sculpted wider this session — the open battlefield stretches further across the alien hills, giving room for enemy placement ahead of M4.
+
+### [Added] Distance fog (built-in URP scene fog)
+- Fog enabled in the **Lighting window** (`Window → Rendering → Lighting` → **Environment** tab → **Other Settings** → **Fog**), Mode = **Linear**, with **Start**/**End** tuned so the haze thickens with distance and leaves the skybox untouched. No post-processing stack, no custom shader.
+
+### [Decision] Built-in fog over the custom Shader Graph
+- First attempt was a custom **full-screen fog**: `Assets/Shader Graphs/Fog.shadergraph` (Scene Depth → × density → lerp toward a dark tint, sky masked via `OneMinus(Smoothstep)`), driven by a Full Screen Pass Renderer Feature. It rendered, and the node-graph walkthrough (fanning one Scene Depth output to two paths, Power for falloff shaping) was good learning — but plain distance fog is a tick-box built-in, so the 11-node graph was over-engineering.
+- Applied the project's own rule back to itself: **check what Unity already does before building it.** The graph, materials and renderer feature stay in the repo for future tinted / volumetric-style fog experiments.
+
+### [Lesson] Full Screen Pass draws the *assigned material*, not "your shader"
+- The Feature's white-screen bug was traced to its **Material** field holding the URP package demo `FullscreenInvertColors.mat` — a full-screen pass renders whatever material is assigned there, regardless of which fog shader exists in the project. Worth recalling whenever a full-screen effect "does nothing."
+
+### [Added] Playtest screenshot
+- `screenshots/Screenshot 2026-09-19 124657.png` added to the README above the earlier shots — expanded terrain with distance fog.
+
+### Next steps
+- M4: enemy spawn/cover layout across the wider terrain, then the first chasing enemy (NavMesh + HP handler).
+
+---
+
 ## 2026-09-18 — TerrainSlide: steep-slope slide + jump-lock (wall-riding fixed)
 
 ### [Added] `TerrainSlide.cs` — sliding down the cliffs
