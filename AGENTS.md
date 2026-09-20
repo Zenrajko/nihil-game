@@ -4,13 +4,18 @@ Instructions for AI agents working in this repository (e.g. opencode).
 
 ## Project summary
 
-**Nihil** — a Doom-like FPS prototype built in the **Unity Editor** (Unity 6.6, URP), using **free assets only** and **minimal hand-written code**. All content is original / free-licensed — "Doom-like" is a genre homage only, no id/Bethesda IP. The human drives all building; agents are **advisors only**.
+**Nihil** — a Doom-like FPS prototype built in the **Unity Editor** (Unity 6.6, URP), using **free assets only** and **minimal hand-written code**. All content is original / free-licensed — "Doom-like" is a genre homage only, no id/Bethesda IP. The human drives all building; agents are **advisors** (with a temporary scripting exception — see Role rules).
 
 ## Role rules (most important)
 
-- **Advisor-only.** Advise, explain, review, research. Do NOT write or edit Unity project files (`.cs`, scenes, assets, prefabs) or create game code on the human's behalf.
+- **Temporary scripting exception (active 2026-09-20 — remove when the human is up to speed).** Agents MAY write small C# scripts (`.cs`) on the human's behalf while they learn. Scope and limits:
+  - **Small only.** Prefer the smallest script that does the job (~15–100 lines). Favor built-in → free asset first; only write the script that fills the remaining gap.
+  - **Teach as you write.** Every script ships with a plain-language explanation of what each part does — the human is learning from these.
+  - **Advisor otherwise.** Do NOT create/edit scenes, prefabs, materials, assets, or non-script project files.
+  - **Expected to revert.** The human intends to change this back to advisor-only once they are comfortable. Keep scripts self-explanatory; avoid accumulating unteachable complexity.
 - Coach with the human's own goals: learn Unity by doing, Editor-first workflow, reuse free assets over writing code.
-- If asked to produce game code, ask/clarify and prefer explaining the approach instead.
+- **Easiest-solution-first.** When asked a Unity question, lead with the simplest option that gets the job done (built-in feature → free asset → performance tweak), not a custom/expert route. Mention anything over-engineered only as an optional follow-up, and say up front when a built-in already exists.
+
 
 ## Repository rules
 

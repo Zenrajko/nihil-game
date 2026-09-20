@@ -6,6 +6,40 @@ Living journal for the *Nihil* project. Newest entries at the top.
 
 ---
 
+## 2026-09-21 — First in-fiction dialogue: helmet HUD + cinematic cut
+
+### [Added] Helmet HUD — incoming transmissions & player chat
+- `HelmetLog.cs` + TMP UI panel on the HUD: messages starting with `#` roll into the log typewriter-style (per-char delay + pitch-shifted `click_004` beep), bare lines display as the protagonist's own chat, then the log clears. A `Play(messages)` API means any script can queue a dialogue beat.
+- The opening scene dialogue launches automatically on spawn (boot sequence in `HelmetLog.Start()`); a second beat is authored on `First_sight_of_sphere` in the Arena.
+- Fonts: **Michroma** + **Orbitron** (Google Fonts, SIL OFL 1.1) for the terminal look; TextMesh Pro essential resources imported.
+
+### [Added] Cinematic cut at the energy source
+- `DialogTrigger.cs` fires once on player entry (tagged "Player"): hands the camera to a fixed `SphereCut` Cinemachine camera via `CinemachineTriggerAction` (PriorityBoost), then deactivates the cut camera when the player leaves so the Brain blends back.
+- First real in-fiction beat: landing transmissions flow into the hub, then "first sight of sphere" triggers a cut + second dialogue exchange.
+
+### [Lesson] CharacterController + trigger = "blocks AND fires"
+- The trigger collided physically *and* still fired `OnTriggerEnter`. Cause: **Queries Hit Triggers** was enabled in Physics settings, so the Character Controller's movement raycasts stop at triggers. Fix: Project Settings → Physics → uncheck **Queries Hit Triggers**.
+
+### [Lesson] CinemachineTriggerAction filters by LAYER, not tag
+- The dialogue fired (tag check) while the camera action did *nothing*: `DialogTrigger` uses `CompareTag("Player")`, but `CinemachineTriggerAction` filters on its **LayerMask** (default: layer 0 only), and the player is on **layer 8** → rejected silently. Fix: set **With Tag** = `Player` on the trigger action (mirrors the dialog filter) or widen the mask.
+
+### [Lesson] Disabled component ≠ inactive GameObject
+- A virtual camera whose **component** checkbox is off never goes live, even at high priority: `PriorityBoost` and `Activate` are both no-ops until the component itself is enabled. (Relates to earlier: "inactive GameObject + enabled component" is the pattern that makes `Activate` work.)
+
+### [Attribution] New assets this session
+- `Assets/Audio/click_004.ogg` — Kenney **UI SFX Set** (CC0) — typewriter beep.
+- `Assets/Fonts/Michroma-Regular.ttf`, `Assets/Fonts/Orbitron-VariableFont_wght.ttf` — Google Fonts (SIL OFL 1.1).
+- TextMesh Pro essential resources (LiberationSans bundled, OFL) — see `CREDITS.md`.
+
+### Cleanup / todo before this commit is sealed
+- `Assets/Fonts/` ships its TTFs **without the OFL license files** — grab `OFL.txt` from the Google Fonts pages and drop one next to each TTF so redistribution stays license-compliant.
+- `Assets/Resources/` exists but is empty (only a `.meta`) — safe to delete if unused.
+
+### Next steps
+- M4: first chasing enemy on the open terrain (NavMesh Agent + HP/death handler).
+
+---
+
 ## 2026-09-19 — Terrain expansion + distance fog via built-in scene fog
 
 ### [Changed] Terrain opens up further

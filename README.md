@@ -27,11 +27,12 @@ Nihil is a homage to the boomer-shooter genre — entirely original art, levels,
 - **Fast "boomer shooter" movement** — sprint, jump, crouch — **done** (M1/M2)
 - **Hitscan weapon** — instant-hit gun with muzzle flash, impact, and sound (M3)
 - **Distance fog** — built-in URP scene fog, thins out the horizon (no post-processing)
+- **Helmet HUD + in-fiction dialogue** — incoming transmissions type into a log, protagonist lines in chat, with a Cinemachine cut at the energy source
 - **Arena fights** against simple chasing enemies (M4)
 - **Health, damage, death & restart** game state (M5)
 - **Retro-juice** — screenshake, particles, pickups, HUD (M6)
 
-> Status: pre-alpha prototype — M0–M2 complete, M3 in progress, set on an open alien-planet arena — see [Roadmap](#roadmap).
+> Status: pre-alpha prototype — M0–M2 complete, M3 in progress, plus a working story intro (helmet dialogue + cinematic cut), set on an open alien-planet arena — see [Roadmap](#roadmap).
 
 ---
 
