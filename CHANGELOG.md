@@ -6,6 +6,27 @@ Living journal for the *Nihil* project. Newest entries at the top.
 
 ---
 
+## 2026-09-21 — HUD target marker + focus-in appearance
+
+### [Added] Target marker pointing at the sphere — `TargetMarker.cs` (in `Nihil.Dialog`)
+- Green square on the HUD projected from the sphere's world position via `WorldToViewportPoint`. When the target is behind the camera the marker mirrors to the "turn around" side and gets pushed onto the border ring, so it always shows which way to turn; a dead-behind fallback pins it to the bottom edge.
+- `HelmetLog` owns visibility: hides the marker while a dialogue sequence plays, shows it afterwards. Single owner — the marker has nothing to do with `DialogTrigger` directly.
+
+### [Added] Focus-in entrance (scale + fade)
+- `SetVisible(true)` spawns the square at 2× size, fully transparent, then an `Update`-driven block shrinks it to 1× and fades it in through a `CanvasGroup` over `appearDur` (0.35s, smoothstep). Every show replays the animation; tuned via `appearDur` / `appearScale`.
+
+### [Fixed] Fade was applied to the whole canvas, not the square
+- First version added its `CanvasGroup` to the **Canvas** object — alpha 0 briefly dimmed the entire HUD (helmet text, bars), so the square read as "scaling only" and looked unfaded. The `CanvasGroup` now lives on the marker square itself; the fade touches only the marker.
+- [Lesson] `CanvasGroup` answers "which GameObject's rendering do I control?" — here the answer was the *leaf*, not the canvas root. Overlay canvases have no per-element opacity of their own.
+
+### [Decision] Solid square marker — border variant parked
+- uGUI has no built-in "draw a border" primitive; the options were a TMP `□` glyph (thin, font-dependent), a nine-slice border sprite (needs a new texture), a two-square composite, or a custom `Graphic` mesh. Kept the solid green square for the playtest; revisit if the look needs it.
+
+### Next steps
+- M4: first chasing enemy on the open terrain (NavMesh Agent + small HP/death handler).
+
+---
+
 ## 2026-09-21 — Cutscene lockdown + cinematic letterbox bars
 
 ### [Added] Full control lockdown during the cut

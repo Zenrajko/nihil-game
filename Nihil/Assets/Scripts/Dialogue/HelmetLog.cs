@@ -11,6 +11,8 @@ public class HelmetLog : MonoBehaviour
     [SerializeField] float holdSeconds = 1.5f;
     [SerializeField] float fadeSeconds = 1f;
 
+    [SerializeField] TargetMarker targetMarker;
+
     [SerializeField] AudioClip typeBeep;
     AudioSource beepSource;
 
@@ -25,7 +27,7 @@ public class HelmetLog : MonoBehaviour
             lines[i].gameObject.SetActive(true);
             lines[i].text = "";
         }
-        return; // Disable for now to speed up testing
+        //return; // Disable for now to speed up testing
         Play(new string[]
         {
             "#Landing completed. All indicators nominal.",
@@ -33,6 +35,7 @@ public class HelmetLog : MonoBehaviour
             "#..What are you wearing?",
             "It's an open channel, Maggie",
             "#Sorry ;D",
+            "@targetMarker:on",
             "#The energy source should be on your scope now",
             "#We placed you as close as we could",
             "#The rest is up to you",
@@ -59,8 +62,16 @@ public class HelmetLog : MonoBehaviour
 
     private IEnumerator PlaySequence(string[] messages)
     {
+        if (targetMarker != null)
+            targetMarker.SetVisible(false);
+
         foreach (string msg in messages)
         {
+            if (msg == "@targetMarker:on")
+            {
+                targetMarker.SetVisible(true);
+                continue;
+            }
             if (msg.Substring(0, 1) == "#")
             {
                 playerChat.text = "";
@@ -75,6 +86,9 @@ public class HelmetLog : MonoBehaviour
             lines[i].text = "";
         }
         playerChat.text = "";
+
+        if (targetMarker != null)
+            targetMarker.SetVisible(true);
     }
 
     IEnumerator TypeWriter(TextMeshProUGUI line, string message)
