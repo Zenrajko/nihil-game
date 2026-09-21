@@ -25,7 +25,7 @@ public class HelmetLog : MonoBehaviour
             lines[i].gameObject.SetActive(true);
             lines[i].text = "";
         }
-        //return;
+        return; // Disable for now to speed up testing
         Play(new string[]
         {
             "#Landing completed. All indicators nominal.",
@@ -55,7 +55,9 @@ public class HelmetLog : MonoBehaviour
         StartCoroutine(PlaySequence(messages));
     }
 
-    IEnumerator PlaySequence(string[] messages)
+    public IEnumerator PlayRoutine(string[] messages) => PlaySequence(messages);
+
+    private IEnumerator PlaySequence(string[] messages)
     {
         foreach (string msg in messages)
         {

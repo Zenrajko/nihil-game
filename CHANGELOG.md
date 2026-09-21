@@ -6,6 +6,28 @@ Living journal for the *Nihil* project. Newest entries at the top.
 
 ---
 
+## 2026-09-21 — Cutscene lockdown + cinematic letterbox bars
+
+### [Added] Full control lockdown during the cut
+- `DialogTrigger` now toggles `FirstPersonController.enabled` off the moment the player enters the sphere and re-enables it once the dialog ends — one self-contained toggle that freezes movement, gravity and mouse look for the whole beat, with zero input-plumbing changes.
+
+### [Added] View re-face after the cut
+- `FirstPersonController.SetLookRotation(pitch, yaw)` — 3rd deliberate patch to the pack file (clamps pitch into the controller's own clamp domain, wrenches the capsule root to an absolute yaw). The re-face runs while *still locked*, so the authored angle lands before input can fight it.
+- [Changed] The obsolete `facing` transform was removed from `DialogTrigger` — `SetLookRotation` made it dead weight.
+
+### [Added] Cinematic letterbox bars — `Letterbox.cs` (in `Nihil.Dialog`)
+- Two full-width black UI bars (top + bottom, pivot at the screen edge) slide in over `slideTime` when the cut starts and out when it ends. Height animated in code; width from stretched anchors, so `sizeDelta.y` is the only thing the script touches.
+- [Lesson] **A coroutine died silently after ~2 frames** — no exception, no `COMPLETED`, the `yield return null` simply never resumed. Even + frame logs + try/catch, the trace showed one `MoveNext` tick and nothing else. Rewrote the slide as a plain `Update()`-driven state machine — immune to `StopAllCoroutines` and external cancellation, and simpler to reason about. Rule of thumb learned: when a coroutine quietly stops ticking, de-coroutine it instead of hunting the canceller.
+
+### [Changed] Scripts re-homed into a new `Nihil.Dialog` assembly
+- `DialogTrigger.cs` + `HelmetLog.cs` moved to `Assets/Scripts/Dialogue/` with a new `Nihil.Dialog.asmdef` (references `Unity.StarterAssets` + `Unity.TextMeshPro`). The dialogue scripts need the player controller, but `Nihil.Scripts` cannot reference the pack (assembly cycle), so the dialogue code got its own assembly that can. `TerrainSlide.cs` stays in `Nihil.Scripts`; the pack's existing reference to it is untouched.
+- [Lesson] The persisted "namespace StarterAssets could not be found" after the move was a **stale Console entry** — Unity keeps old compile errors until cleared, even once the wiring is valid. Fix: clear the Console, then Ctrl+R reimport.
+
+### Next steps
+- M4: first chasing enemy on the open terrain (NavMesh Agent + small HP/death handler). Noting `HelmetLog.Start()` still ends with `return;` — the boot dialogue stays bypassed during playtests until the intro is wanted live again.
+
+---
+
 ## 2026-09-21 — First in-fiction dialogue: helmet HUD + cinematic cut
 
 ### [Added] Helmet HUD — incoming transmissions & player chat

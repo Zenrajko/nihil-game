@@ -39,7 +39,7 @@ Asset attributions for **Nihil**. Every imported asset records its author, licen
 - Author: Google Fonts — https://fonts.google.com/ (Michroma, Orbitron)
 - License: **SIL Open Font License 1.1** — free use, modification, and redistribution, provided the license accompanies the font
 - Redistribution: permitted verbatim / modified with OFL license text included
-- Notes: Imported into `Assets/Fonts/` (TTF + generated SDF assets) for the HUD terminal look. **OFL license files still to be added next to the TTFs** — download `OFL.txt` from the Google Fonts pages so redistribution stays compliant.
+- Notes: Imported into `Assets/Fonts/` (TTF + generated SDF assets) for the HUD terminal look. **OFL license text ships next to each TTF** (`Michroma_OFL.txt`, `Orbitron_OFL.txt`) so redistribution stays compliant.
 
 ### 2026-09-21 — TextMesh Pro essentials (Unity) incl. LiberationSans
 - Author: Unity Technologies / the TMP project; LiberationSans by Red Hat (as bundled by Unity)

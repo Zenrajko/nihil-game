@@ -75,7 +75,16 @@ namespace StarterAssets
 
 		private const float _threshold = 0.01f;
 
-		private bool IsCurrentDeviceMouse
+        public void SetLookRotation(float pitch, float yaw)
+        {
+            _cinemachineTargetPitch = ClampAngle(pitch, BottomClamp, TopClamp);
+            CinemachineCameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0f, 0f);
+
+            Vector3 e = transform.eulerAngles;
+            transform.rotation = Quaternion.Euler(e.x, yaw, e.z);
+        }
+
+        private bool IsCurrentDeviceMouse
 		{
 			get
 			{

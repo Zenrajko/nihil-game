@@ -2,7 +2,9 @@
 
 **A Doom-style first-person shooter prototype.** Fast arena combat, a sleek retro-future look, and zero paid assets.
 
-Nihil is a homage to the boomer-shooter genre — entirely original art, levels, and weapons, built in the Unity Editor with **100% free assets** and minimal hand-written code.
+Nihil is a learning experience to create a homage to the boomer-shooter genre — entirely original art, levels, and weapons, built in the Unity Editor with **100% free assets** and minimal scripting.
+
+NOTE: AI has been used on this project as a teacher in how to use Unity, and provided some of the initial script skeletons which I then built on. All other aspects of the game were designed in the Unity Editor by myself.
 
 ---
 
